@@ -32,16 +32,14 @@ int main(int argc, char *argv[]){
       table[x][y] = h;
     }
   }
-  //good to this point
-
 
   while(1){
+  //adding sand causes weird issue with sinks
     addSand(11, 11);
     for(int j=0; j<23;j++){
       for(int i =0; i<23; i++){
-        //need to check if sink and if so then print #
         if(table[j][i] == -1){
-          printf("%d", "#");
+          printf("%3c", '#');
         }else{
           printf("%3d", table[j][i]);
         }
@@ -61,7 +59,8 @@ int main(int argc, char *argv[]){
 void addSand(int x, int y){
   int tmp = table[x][y];
   //need to check if height is -1 for sinks something like if this x,y = -1 then do nothing
-  if(tmp < 8 && tmp != -1){
+  if(tmp != -1){
+  if(tmp < 8){
     table[x][y]++;
   }else{
     table[x][y] = tmp - 7;
@@ -89,5 +88,6 @@ void addSand(int x, int y){
     if(x<22&&y<22){
       addSand(x+1,y+1);
     }
+  }
   }
 }
